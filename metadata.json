@@ -1,0 +1,6 @@
+{
+  "name": "EcoBot - Hệ sinh thái Lớp học Xanh & Mô phỏng Dấu chân Carbon",
+  "description": "Hệ sinh thái giáo dục môi trường, mô phỏng dấu chân carbon theo thời gian thực và trợ lý AI soạn kế hoạch bài dạy chuẩn Công văn 5512 - Ngày hội Nhà giáo Sáng tạo 2026",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
