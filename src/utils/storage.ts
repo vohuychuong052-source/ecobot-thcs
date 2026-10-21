@@ -264,10 +264,10 @@ export const INITIAL_VIDEOS: VideoItem[] = [
   }
   {
     id: 'vid_6',
-    title: 'Một hành động nhỏ - ý nghĩa lớn',
-    description: 'Dọn rác thải và phân loại rác thải nhựa.',
-    url: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
-    embedUrl: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
+    title: 'Sáng Tạo Xanh',
+    description: 'Dùng thân chuối để làm hộp đựng.',
+    url: 'https://www.youtube.com/watch?v=fffAanh38EY',
+    embedUrl: 'https://www.youtube.com/watch?v=fffAanh38EY',
     grade: 'Lớp 7',
     subject: 'Giáo dục công dân',
     tag: 'Tiết kiệm năng lượng',
