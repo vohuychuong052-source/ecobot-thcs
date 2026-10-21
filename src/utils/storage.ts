@@ -240,10 +240,10 @@ export const INITIAL_VIDEOS: VideoItem[] = [
   }
   {
     id: 'vid_4',
-    title: 'Tuổi trẻ Vĩnh Long chung tay bảo vệ môi trường',
-    description: 'Chiến dịch dọn dẹp rác thải.',
-    url: 'https://www.youtube.com/watch?v=SlS--5M9Ypw',
-    embedUrl: 'https://www.youtube.com/watch?v=SlS--5M9Ypw',
+    title: 'Những người trẻ lan tỏa phong trào dọn rác',
+    description: 'Chiến dịch dọn dẹp rác thải trên các dòng sông.',
+    url: 'https://www.youtube.com/watch?v=1_St0l7GkDQ&t=5s',
+    embedUrl: 'https://www.youtube.com/watch?v=1_St0l7GkDQ&t=5s',
     grade: 'Lớp 9',
     subject: 'Giáo dục công dân',
     tag: 'Tiết kiệm năng lượng',
