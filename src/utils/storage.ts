@@ -55,8 +55,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     email: 'hocsinh.lop8@thcsnguyendang.edu.vn',
     createdAt: '2026-09-01T08:00:00Z',
   },
-      
-        
+            
 ];
 
 // Khởi tạo kho học liệu sẵn có từ 16 tệp sách giáo khoa & văn bản hướng dẫn chính thức trong workspace
