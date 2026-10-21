@@ -54,7 +54,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     department: '',
     email: 'hocsinh.lop8@thcsnguyendang.edu.vn',
     createdAt: '2026-09-01T08:00:00Z',
-  }
+  },
   // --- THÊM GIÁO VIÊN MỚI ---
     {
       id: 'gv_01',
@@ -459,7 +459,8 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
       department: '',
       email: 'thienbao@thcsnguyendang.edu.vn',
       createdAt: '2026-09-01T08:00:00Z',
-    }, {
+    }, 
+    {
       id: 'hs_33',
       name: 'Sĩ Như Huỳnh',
       role: 'student',
@@ -773,7 +774,7 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     tag: 'Tiết kiệm năng lượng',
     addedBy: 'Trương Văn Nghĩa',
     addedAt: '2026-09-04',
-  }
+  },
   {
     id: 'vid_4',
     title: 'Những người trẻ lan tỏa phong trào dọn rác',
@@ -785,7 +786,7 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     tag: 'Tiết kiệm năng lượng',
     addedBy: 'Trương Văn Nghĩa',
     addedAt: '2026-09-04',
-  }
+  },
   {
     id: 'vid_5',
     title: 'Một hành động nhỏ - ý nghĩa lớn',
@@ -797,7 +798,7 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     tag: 'Tiết kiệm năng lượng',
     addedBy: 'Trương Văn Nghĩa',
     addedAt: '2026-09-04',
-  }
+  },
   {
     id: 'vid_6',
     title: 'Sáng Tạo Xanh',
@@ -809,7 +810,7 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     tag: 'Tiết kiệm năng lượng',
     addedBy: 'Trương Văn Nghĩa',
     addedAt: '2026-09-04',
-  }
+  },
 ];
 
 export const INITIAL_LOGS: GreenActionLog[] = [
