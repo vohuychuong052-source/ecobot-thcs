@@ -546,7 +546,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               2 Tài khoản Demo Chính quy
             </h4>
             <p className="text-xs text-slate-300 mb-3">
-              Mặc định chỉ có 01 Demo Giáo viên (Trương Văn Nghĩa) và 01 Demo Học sinh (Học sinh Lớp 8):
+              Mặc định chỉ có 01 Giáo viên (Trương Văn Nghĩa) và 01 Demo Học sinh (Học sinh Lớp 8):
             </p>
 
             <div className="space-y-2">
@@ -571,7 +571,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                           ? 'bg-blue-900/80 text-blue-300'
                           : 'bg-emerald-900/80 text-emerald-300'
                       }`}>
-                        {demo.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh'}
+                        {demo.role === 'teacher' ? 'Giáo viên' : 'Demo Học sinh'}
                       </span>
                     </div>
                     <div className="text-[11px] text-slate-400 mt-1">
