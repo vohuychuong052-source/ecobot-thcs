@@ -250,6 +250,30 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     addedBy: 'Trương Văn Nghĩa',
     addedAt: '2026-09-04',
   }
+  {
+    id: 'vid_5',
+    title: 'Một hành động nhỏ - ý nghĩa lớn',
+    description: 'Dọn rác thải và phân loại rác thải nhựa.',
+    url: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
+    embedUrl: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
+    grade: 'Lớp 7',
+    subject: 'Giáo dục công dân',
+    tag: 'Tiết kiệm năng lượng',
+    addedBy: 'Trương Văn Nghĩa',
+    addedAt: '2026-09-04',
+  }
+  {
+    id: 'vid_6',
+    title: 'Một hành động nhỏ - ý nghĩa lớn',
+    description: 'Dọn rác thải và phân loại rác thải nhựa.',
+    url: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
+    embedUrl: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
+    grade: 'Lớp 7',
+    subject: 'Giáo dục công dân',
+    tag: 'Tiết kiệm năng lượng',
+    addedBy: 'Trương Văn Nghĩa',
+    addedAt: '2026-09-04',
+  }
 ];
 
 export const INITIAL_LOGS: GreenActionLog[] = [
