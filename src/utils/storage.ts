@@ -1,4 +1,4 @@
-import { UserProfile, VideoItem, GreenActionLog, EducationalResource } from '../types';
+import { UserProfile, VideoItem, GreenActionLog } from '../types';
 
 export const DEFAULT_SCHOOL = 'Trường THCS Nguyễn Đáng';
 export const DEFAULT_TEACHER = 'Trương Văn Nghĩa';
@@ -13,9 +13,7 @@ function safeSetItem(key: string, value: string): boolean {
   }
 }
 
-// -------------------------------------------------------------
-// DANH SÁCH TÀI KHOẢN MẶC ĐỊNH (CÓ ĐỊNH VĨNH VIỄN TRÊN HỆ THỐNG)
-// -------------------------------------------------------------
+// Danh sách tài khoản hệ thống (Cố định vĩnh viễn)
 export const INITIAL_DEMO_USERS: UserProfile[] = [
   // 1. Tài khoản Demo gốc
   {
@@ -41,7 +39,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
 
-  // 2. Danh sách GIÁO VIÊN CHÍNH THỨC
+  // 2. Giáo viên chính thức
   {
     id: 'gv_01',
     name: 'Nguyễn Thị Hồng Điệp',
@@ -109,7 +107,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
 
-  // 3. Danh sách HỌC SINH CHÍNH THỨC
+  // 3. Học sinh chính thức
   {
     id: 'hs_01',
     name: 'Nguyễn Văn An',
