@@ -202,141 +202,6 @@ export const OFFICIAL_MATERIALS: LearningMaterial[] = [
   }
 ];
 
-export const INITIAL_VIDEOS: VideoItem[] = [
-  {
-    id: 'vid_1',
-    title: 'Mô phỏng Dấu chân Carbon & Biến đổi Khí hậu tại Việt Nam',
-    description: 'Video trực quan giải thích khái niệm dấu chân carbon cá nhân và lớp học THCS.',
-    url: 'https://www.youtube.com/watch?v=8q7_aV8eLUE',
-    embedUrl: 'https://www.youtube.com/embed/8q7_aV8eLUE',
-    grade: 'Lớp 8',
-    subject: 'Khoa học Tự nhiên',
-    tag: 'Dấu chân Carbon',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-02',
-  },
-  {
-    id: 'vid_2',
-    title: 'Tìm hiểu về tác hại của RÁC THẢI NHỰA trong 6 phút',
-    description: 'Ô nhiễm nhựa.',
-    url: 'https://www.youtube.com/watch?v=BujzV_R60us',
-    embedUrl: 'https://www.youtube.com/embed/BujzV_R60us',
-    grade: 'Lớp 6',
-    subject: 'Giáo dục công dân',
-    tag: 'Môi trường xanh',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-03',
-  },
-  {
-    id: 'vid_3',
-    title: 'Tuổi trẻ Vĩnh Long chung tay bảo vệ môi trường',
-    description: 'Chiến dịch dọn dẹp rác thải.',
-    url: 'https://www.youtube.com/watch?v=SlS--5M9Ypw',
-    embedUrl: 'https://www.youtube.com/embed/SlS--5M9Ypw',
-    grade: 'Lớp 9',
-    subject: 'Giáo dục công dân',
-    tag: 'Bảo vệ môi trường',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-04',
-  },
-  {
-    id: 'vid_4',
-    title: 'Những người trẻ lan tỏa phong trào dọn rác',
-    description: 'Chiến dịch dọn dẹp rác thải trên các dòng sông.',
-    url: 'https://www.youtube.com/watch?v=u2eftLb8zto',
-    embedUrl: 'https://www.youtube.com/embed/u2eftLb8zto',
-    grade: 'Lớp 9',
-    subject: 'Giáo dục công dân',
-    tag: 'Bảo vệ môi trường',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-04',
-  },
-  {
-    id: 'vid_5',
-    title: 'Một hành động nhỏ - ý nghĩa lớn',
-    description: 'Dọn rác thải và phân loại rác thải nhựa.',
-    url: 'https://www.youtube.com/watch?v=bzu8_OfEIY4',
-    embedUrl: 'https://www.youtube.com/embed/bzu8_OfEIY4',
-    grade: 'Lớp 7',
-    subject: 'Giáo dục công dân',
-    tag: 'Bảo vệ môi trường',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-04',
-  },
-  {
-    id: 'vid_6',
-    title: 'Xây dựng trường học xanh sáng kiến BVMT từ câu chuyện thu gom vỏ hộp sữa ',
-    description: 'Ô nhiễm môi trường.',
-    url: 'https://www.youtube.com/watch?v=RXAS0SnQb9w',
-    embedUrl: 'https://www.youtube.com/embed/RXAS0SnQb9w',
-    grade: 'Lớp 8',
-    subject: 'Giáo dục công dân',
-    tag: 'Bảo vệ môi trường',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-04',
-  },
-  {
-    id: 'vid_7',
-    title: 'TÍN CHỈ CARBON – Loại tiền tệ mới trong kỷ nguyên ngập tràn ô nhiễm?',
-    description: 'Biến đổikhí hậu.',
-    url: 'https://www.youtube.com/watch?v=38_g7yBqrlM',
-    embedUrl: 'https://www.youtube.com/embed/38_g7yBqrlM',
-    grade: 'Lớp 7',
-    subject: 'Giáo dục công dân',
-    tag: 'Bảo vệ môi trường',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-04',
-  },
-  {
-    id: 'vid_8',
-    title: 'Điều gì xảy ra khi ta sống trong bầu không khí ô nhiễm ?',
-    description: 'ô nhiễm không khí.',
-    url: 'https://www.youtube.com/watch?v=-Zo4hHk-dH4',
-    embedUrl: 'https://www.youtube.com/embed/-Zo4hHk-dH4',
-    grade: 'Lớp 7',
-    subject: 'Giáo dục công dân',
-    tag: 'Tiết kiệm năng lượng',
-    addedBy: 'Trương Văn Nghĩa',
-    addedAt: '2026-09-04',
-  },
-];
-
-export const INITIAL_LOGS: GreenActionLog[] = [
-  {
-    id: 'log_1',
-    userId: 'gv_demo',
-    userName: 'Trương Văn Nghĩa',
-    actionType: 'electricity',
-    title: 'Tắt quạt và đèn khi kết thúc tiết học 5',
-    description: 'Nhắc nhở học sinh tắt toàn bộ 4 quạt trần và 6 bóng đèn tuýp trước khi ra về.',
-    savedCO2Kg: 0.64,
-    points: 25,
-    date: '2026-10-18',
-  },
-  {
-    id: 'log_2',
-    userId: 'hs_demo',
-    userName: 'Học sinh Lớp 8',
-    actionType: 'transport',
-    title: 'Đi bộ và đi xe đạp đến trường cả tuần',
-    description: 'Không nhờ phụ huynh chở bằng xe máy xăng, giảm phát thải giao thông.',
-    savedCO2Kg: 1.6,
-    points: 40,
-    date: '2026-10-19',
-  },
-  {
-    id: 'log_3',
-    userId: 'hs_demo',
-    userName: 'Học sinh Lớp 8',
-    actionType: 'plastic',
-    title: 'Dùng bình nước cá nhân & Hộp ăn trưa inox',
-    description: 'Từ chối 5 chai nhựa và 5 hộp xốp dùng một lần tại căn tin.',
-    savedCO2Kg: 0.75,
-    points: 30,
-    date: '2026-10-20',
-  }
-];
-
 export interface AppSettings {
   academicYear: string;
   userApiKey: string;
@@ -517,52 +382,55 @@ export const storage = {
     return files;
   },
 
+
   // VIDEOS
-  
-getVideos(): VideoItem[] {
-  try {
-    const data = localStorage.getItem(STORAGE_KEYS.VIDEOS);
 
-    if (!data) {
-      safeSetItem(
-        STORAGE_KEYS.VIDEOS,
-        JSON.stringify(INITIAL_VIDEOS)
+  getVideos(): VideoItem[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.VIDEOS);
+
+      if (!data) {
+        safeSetItem(
+          STORAGE_KEYS.VIDEOS,
+          JSON.stringify(INITIAL_VIDEOS)
+        );
+        return INITIAL_VIDEOS;
+      }
+
+      const parsed: VideoItem[] = JSON.parse(data);
+
+      if (!Array.isArray(parsed)) {
+        safeSetItem(
+          STORAGE_KEYS.VIDEOS,
+          JSON.stringify(INITIAL_VIDEOS)
+        );
+        return INITIAL_VIDEOS;
+      }
+
+      // Cập nhật các video mặc định theo dữ liệu mới trong code.
+      const defaultIds = new Set(
+        INITIAL_VIDEOS.map(video => video.id)
       );
-      return INITIAL_VIDEOS;
-    }
 
-    const parsed: VideoItem[] = JSON.parse(data);
-
-    if (!Array.isArray(parsed)) {
-      safeSetItem(
-        STORAGE_KEYS.VIDEOS,
-        JSON.stringify(INITIAL_VIDEOS)
+      const userVideos = parsed.filter(
+        video => !defaultIds.has(video.id)
       );
-      return INITIAL_VIDEOS;
-    }
 
-    const existingIds = new Set(
-      parsed.map(video => video.id)
-    );
+      const merged = [
+        ...INITIAL_VIDEOS,
+        ...userVideos,
+      ];
 
-    const missingDefaults = INITIAL_VIDEOS.filter(
-      video => !existingIds.has(video.id)
-    );
-
-    const merged = [...missingDefaults, ...parsed];
-
-    if (missingDefaults.length > 0) {
       safeSetItem(
         STORAGE_KEYS.VIDEOS,
         JSON.stringify(merged)
       );
-    }
 
-    return merged;
-  } catch {
-    return INITIAL_VIDEOS;
-  }
-},
+      return merged;
+    } catch {
+      return INITIAL_VIDEOS;
+    }
+  },
 
 
   saveVideos(videos: VideoItem[]) {
