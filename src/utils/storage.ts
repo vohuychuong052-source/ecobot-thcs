@@ -217,10 +217,10 @@ export const INITIAL_VIDEOS: VideoItem[] = [
   },
   {
     id: 'vid_2',
-    title: 'Tìm hiểu về tác hại của RÁC THẢI NHỰA trong 6 phút ',
+    title: 'Tìm hiểu về tác hại của RÁC THẢI NHỰA trong 6 phút',
     description: 'Ô nhiễm nhựa.',
     url: 'https://www.youtube.com/watch?v=BujzV_R60us',
-    embedUrl: 'https://youtu.be/BujzV_R60us?si=vcsxwChsw8AzuhYW',
+    embedUrl: 'https://www.youtube.com/embed/BujzV_R60us',
     grade: 'Lớp 6',
     subject: 'Giáo dục công dân',
     tag: 'Lớp học Xanh',
