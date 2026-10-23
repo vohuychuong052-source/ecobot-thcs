@@ -19,8 +19,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   academicYear,
   onSaveAcademicYear,
 }) => {
-  const [tempApiKey, setTempApiKey] = useState(apiKey || '');
-  const [tempYear, setTempYear] = useState(academicYear || '2026-2027');
+  const [tempApiKey, setTempApiKey] = useState(apiKey);
+  const [tempYear, setTempYear] = useState(academicYear);
   const [showKey, setShowKey] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
@@ -36,12 +36,11 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Cài đặt & Quản lý Tài khoản</h2>
-          <p className="text-slate-500 text-sm">Cấu hình năm học, Khóa API cá nhân và Chuyển đổi tài khoản</p>
+          <p className="text-slate-500 text-sm">Cấu hình năm học, Khóa API cá nhân và Chuyển đổi tài khoản Demo</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Cấu hình chung */}
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
             <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
@@ -99,29 +98,22 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
 
-        {/* Danh sách Tài khoản & Nhãn phân loại */}
         <div className="lg:col-span-1">
           <div className="bg-gradient-to-br from-[#0A192F] to-slate-900 rounded-2xl p-5 text-white shadow-xl border border-emerald-500/30">
             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
-              👥 Danh sách Tài khoản Hệ thống
+              ⚡ Quick Demo Switcher
             </h4>
             <p className="text-xs text-slate-300 mb-4">
-              Chọn tài khoản làm việc trực tiếp:
+              Chuyển đổi nhanh vai trò để trải nghiệm giao diện Giáo viên hoặc Học sinh:
             </p>
 
-            <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
-              {INITIAL_DEMO_USERS.map((userItem) => {
-                const isActive = currentUser.id === userItem.id;
-                // LOGIC PHÂN LOẠI NHÃN: Chỉ gv_demo và hs_demo mới hiện Demo
-                const isDemoAccount = userItem.id === 'gv_demo' || userItem.id === 'hs_demo';
-                const badgeText = isDemoAccount
-                  ? (userItem.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh')
-                  : (userItem.role === 'teacher' ? 'Giáo viên' : 'Học sinh');
-
+            <div className="space-y-2">
+              {INITIAL_DEMO_USERS.map((demo) => {
+                const isActive = currentUser.id === demo.id;
                 return (
                   <div
-                    key={userItem.id}
-                    onClick={() => onSwitchUser(userItem)}
+                    key={demo.id}
+                    onClick={() => onSwitchUser(demo)}
                     className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
                       isActive
                         ? 'bg-emerald-600/30 border-emerald-500 text-white shadow-md'
@@ -129,24 +121,22 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                     }`}
                   >
                     <div className="flex justify-between items-start mb-1">
-                      <span className="font-bold text-sm text-white">{userItem.name}</span>
+                      <span className="font-bold text-sm text-white">{demo.name}</span>
                       <span
                         className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                          isDemoAccount
+                          demo.role === 'teacher'
                             ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                            : userItem.role === 'teacher'
-                            ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
                             : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                         }`}
                       >
-                        {badgeText}
+                        {demo.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh'}
                       </span>
                     </div>
 
                     <div className="text-[11px] text-slate-400 space-y-0.5">
-                      <p>{userItem.school || DEFAULT_SCHOOL} • {userItem.grade}</p>
-                      {userItem.subject && <p>Chuyên môn: {userItem.subject}</p>}
-                      <p className="text-slate-500 text-[10px]">{userItem.email}</p>
+                      <p>{demo.school || DEFAULT_SCHOOL} • {demo.grade}</p>
+                      {demo.subject && <p>Chuyên môn: {demo.subject}</p>}
+                      <p className="text-slate-500 text-[10px]">{demo.email}</p>
                     </div>
                   </div>
                 );
