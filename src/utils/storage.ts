@@ -186,17 +186,13 @@ export const INITIAL_LOGS: GreenActionLog[] = [
 ];
 
 // -------------------------------------------------------------
-// 3. ĐỐI TƯỢNG STORAGE BỊ THIẾU KHIẾN VERCEL BÁO LỖI BUILD[cite: 16]
+// 3. ĐỐI TƯỢNG STORAGE ĐẦY ĐỦ CÁC HÀM (KHẮC PHỤC TRIỆT ĐỂ LỖI)
 // -------------------------------------------------------------
 export const storage = {
   getUsers: (): UserProfile[] => {
     const saved = localStorage.getItem('ecobot_users');
     if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error(e);
-      }
+      try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
     return INITIAL_DEMO_USERS;
   },
@@ -206,11 +202,7 @@ export const storage = {
   getLogs: (): GreenActionLog[] => {
     const saved = localStorage.getItem('ecobot_logs');
     if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error(e);
-      }
+      try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
     return INITIAL_LOGS;
   },
@@ -220,15 +212,21 @@ export const storage = {
   getVideos: (): VideoItem[] => {
     const saved = localStorage.getItem('ecobot_videos');
     if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error(e);
-      }
+      try { return JSON.parse(saved); } catch (e) { console.error(e); }
     }
     return INITIAL_VIDEOS;
   },
   saveVideos: (videos: VideoItem[]) => {
     safeSetItem('ecobot_videos', JSON.stringify(videos));
+  },
+  getCurrentUser: (): UserProfile => {
+    const saved = localStorage.getItem('ecobot_current_user');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    }
+    return INITIAL_DEMO_USERS[0];
+  },
+  setCurrentUser: (user: UserProfile) => {
+    safeSetItem('ecobot_current_user', JSON.stringify(user));
   }
 };
