@@ -14,7 +14,7 @@ function safeSetItem(key: string, value: string): boolean {
 }
 
 // -------------------------------------------------------------
-// 1. DANH SÁCH TÀI KHOẢN HỆ THỐNG (CỐ ĐỊNH VĨNH VIỄN)
+// 1. DANH SÁCH TÀI KHOẢN HỆ THỐNG CỐ ĐỊNH
 // -------------------------------------------------------------
 export const INITIAL_DEMO_USERS: UserProfile[] = [
   {
@@ -178,7 +178,7 @@ export const INITIAL_LOGS: GreenActionLog[] = [
 ];
 
 // -------------------------------------------------------------
-// 3. ĐỐI TƯỢNG STORAGE ĐẦY ĐỦ TẤT CẢ CÁC HÀM (BAO GỒM getFiles)
+// 2. ĐỐI TƯỢNG STORAGE ĐẦY ĐỦ MỌI HÀM VÀ HỖ TRỢ CẢ 2 KIỂU IMPORT
 // -------------------------------------------------------------
 export const storage = {
   getUsers: (): UserProfile[] => {
@@ -249,3 +249,6 @@ export const storage = {
     }
   }
 };
+
+// Hỗ trợ thêm default export để tránh lỗi import khác kiểu
+export default storage;
