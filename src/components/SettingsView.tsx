@@ -36,7 +36,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Cài đặt & Quản lý Tài khoản</h2>
-          <p className="text-slate-500 text-sm">Cấu hình năm học, Khóa API cá nhân và Chuyển đổi tài khoản Demo</p>
+          <p className="text-slate-500 text-sm">Cấu hình năm học, Khóa API cá nhân và Chuyển đổi tài khoản hệ thống</p>
         </div>
       </div>
 
@@ -101,15 +101,21 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         <div className="lg:col-span-1">
           <div className="bg-gradient-to-br from-[#0A192F] to-slate-900 rounded-2xl p-5 text-white shadow-xl border border-emerald-500/30">
             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
-              ⚡ Quick Demo Switcher
+              👥 Danh sách Tài khoản Hệ thống
             </h4>
             <p className="text-xs text-slate-300 mb-4">
-              Chuyển đổi nhanh vai trò để trải nghiệm giao diện Giáo viên hoặc Học sinh:
+              Chọn tài khoản làm việc trực tiếp:
             </p>
 
-            <div className="space-y-2">
+            <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
               {INITIAL_DEMO_USERS.map((demo) => {
                 const isActive = currentUser.id === demo.id;
+                // Phân loại: Chỉ gv_demo và hs_demo mới hiện Demo, còn lại là tài khoản chính thức
+                const isDemoAccount = demo.id === 'gv_demo' || demo.id === 'hs_demo';
+                const badgeText = isDemoAccount
+                  ? (demo.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh')
+                  : (demo.role === 'teacher' ? 'Giáo viên' : 'Học sinh');
+
                 return (
                   <div
                     key={demo.id}
@@ -124,12 +130,14 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                       <span className="font-bold text-sm text-white">{demo.name}</span>
                       <span
                         className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
-                          demo.role === 'teacher'
+                          isDemoAccount
                             ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                            : demo.role === 'teacher'
+                            ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
                             : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                         }`}
                       >
-                        {demo.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh'}
+                        {badgeText}
                       </span>
                     </div>
 
