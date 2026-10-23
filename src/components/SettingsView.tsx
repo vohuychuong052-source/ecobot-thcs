@@ -1,18 +1,6 @@
 import React, { useState } from 'react';
+import { UserProfile } from '../types';
 import { INITIAL_DEMO_USERS, DEFAULT_SCHOOL } from '../utils/storage';
-
-interface UserProfile {
-  id: string;
-  name: string;
-  role: 'teacher' | 'student';
-  school?: string;
-  grade?: string;
-  subject?: string;
-  department?: string;
-  email?: string;
-  phone?: string;
-  createdAt?: string;
-}
 
 interface SettingsViewProps {
   currentUser: UserProfile;
@@ -122,9 +110,9 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             </p>
 
             <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
-              {INITIAL_DEMO_USERS.map((userItem: any) => {
+              {INITIAL_DEMO_USERS.map((userItem) => {
                 const isActive = currentUser.id === userItem.id;
-                // LOGIC PHÂN LOẠI NHÃN:
+                // LOGIC PHÂN LOẠI NHÃN: Chỉ gv_demo và hs_demo mới hiện Demo
                 const isDemoAccount = userItem.id === 'gv_demo' || userItem.id === 'hs_demo';
                 const badgeText = isDemoAccount
                   ? (userItem.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh')
