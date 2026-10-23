@@ -119,7 +119,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
   {
-    id: 'hs_05',
+    id: 'hs_02',
     name: 'Sĩ Hồng Hoa',
     role: 'student',
     school: DEFAULT_SCHOOL,
@@ -129,7 +129,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
   {
-    id: 'hs_06',
+    id: 'hs_3',
     name: 'La Văn Hậu',
     role: 'student',
     school: DEFAULT_SCHOOL,
@@ -154,7 +154,7 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     addedAt: '2026-09-01',
   },
   {
-    id: 'vid_3',
+    id: 'vid_2',
     title: 'Hành động nhỏ vì Hành tinh Xanh - Tiết kiệm điện năng học đường',
     description: 'Chiến dịch tắt thiết bị điện khi ra khỏi lớp học và sử dụng ánh sáng tự nhiên.',
     url: 'https://www.youtube.com/watch?v=V01Q3xjS1Ek',
