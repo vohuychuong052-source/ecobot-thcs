@@ -178,7 +178,7 @@ export const INITIAL_LOGS: GreenActionLog[] = [
 ];
 
 // -------------------------------------------------------------
-// 3. ĐỐI TƯỢNG STORAGE AN TOÀN TUYỆT ĐỐI (TRÁNH MỌI LỖI RUNTIME)
+// 3. ĐỐI TƯỢNG STORAGE ĐẦY ĐỦ TẤT CẢ CÁC HÀM (BAO GỒM getFiles)
 // -------------------------------------------------------------
 export const storage = {
   getUsers: (): UserProfile[] => {
@@ -188,9 +188,7 @@ export const storage = {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { console.error(e); }
     return INITIAL_DEMO_USERS;
   },
   saveUsers: (users: UserProfile[]) => {
@@ -203,9 +201,7 @@ export const storage = {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) return parsed;
       }
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { console.error(e); }
     return INITIAL_LOGS;
   },
   saveLogs: (logs: GreenActionLog[]) => {
@@ -218,13 +214,24 @@ export const storage = {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { console.error(e); }
     return INITIAL_VIDEOS;
   },
   saveVideos: (videos: VideoItem[]) => {
     safeSetItem('ecobot_videos', JSON.stringify(videos));
+  },
+  getFiles: (): any[] => {
+    try {
+      const saved = localStorage.getItem('ecobot_files');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) { console.error(e); }
+    return [];
+  },
+  saveFiles: (files: any[]) => {
+    safeSetItem('ecobot_files', JSON.stringify(files));
   },
   getCurrentUser: (): UserProfile => {
     try {
@@ -233,9 +240,7 @@ export const storage = {
         const parsed = JSON.parse(saved);
         if (parsed && parsed.id) return parsed;
       }
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) { console.error(e); }
     return INITIAL_DEMO_USERS[0];
   },
   setCurrentUser: (user: UserProfile) => {
