@@ -17,7 +17,6 @@ function safeSetItem(key: string, value: string): boolean {
 // 1. DANH SÁCH TÀI KHOẢN HỆ THỐNG (CỐ ĐỊNH VĨNH VIỄN)
 // -------------------------------------------------------------
 export const INITIAL_DEMO_USERS: UserProfile[] = [
-  // Tài khoản Demo gốc
   {
     id: 'gv_demo',
     name: DEFAULT_TEACHER,
@@ -40,8 +39,6 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     email: 'hocsinh.lop8@thcsnguyendang.edu.vn',
     createdAt: '2026-09-01T08:00:00Z',
   },
-
-  // Giáo viên chính thức
   {
     id: 'gv_01',
     name: 'Nguyễn Thị Hồng Điệp',
@@ -108,8 +105,6 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     email: 'kimdong@thcsnguyendang.edu.vn',
     createdAt: '2026-09-01T08:00:00Z',
   },
-
-  // Học sinh chính thức
   {
     id: 'hs_01',
     name: 'Nguyễn Văn An',
@@ -142,9 +137,6 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
   }
 ];
 
-// -------------------------------------------------------------
-// 2. DỮ LIỆU BAN ĐẦU
-// -------------------------------------------------------------
 export const INITIAL_VIDEOS: VideoItem[] = [
   {
     id: 'vid_1',
@@ -186,13 +178,18 @@ export const INITIAL_LOGS: GreenActionLog[] = [
 ];
 
 // -------------------------------------------------------------
-// 3. ĐỐI TƯỢNG STORAGE ĐẦY ĐỦ CÁC HÀM (KHẮC PHỤC TRIỆT ĐỂ LỖI)
+// 3. ĐỐI TƯỢNG STORAGE AN TOÀN TUYỆT ĐỐI (TRÁNH MỌI LỖI RUNTIME)
 // -------------------------------------------------------------
 export const storage = {
   getUsers: (): UserProfile[] => {
-    const saved = localStorage.getItem('ecobot_users');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    try {
+      const saved = localStorage.getItem('ecobot_users');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.error(e);
     }
     return INITIAL_DEMO_USERS;
   },
@@ -200,9 +197,14 @@ export const storage = {
     safeSetItem('ecobot_users', JSON.stringify(users));
   },
   getLogs: (): GreenActionLog[] => {
-    const saved = localStorage.getItem('ecobot_logs');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    try {
+      const saved = localStorage.getItem('ecobot_logs');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {
+      console.error(e);
     }
     return INITIAL_LOGS;
   },
@@ -210,9 +212,14 @@ export const storage = {
     safeSetItem('ecobot_logs', JSON.stringify(logs));
   },
   getVideos: (): VideoItem[] => {
-    const saved = localStorage.getItem('ecobot_videos');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    try {
+      const saved = localStorage.getItem('ecobot_videos');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.error(e);
     }
     return INITIAL_VIDEOS;
   },
@@ -220,13 +227,20 @@ export const storage = {
     safeSetItem('ecobot_videos', JSON.stringify(videos));
   },
   getCurrentUser: (): UserProfile => {
-    const saved = localStorage.getItem('ecobot_current_user');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { console.error(e); }
+    try {
+      const saved = localStorage.getItem('ecobot_current_user');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.id) return parsed;
+      }
+    } catch (e) {
+      console.error(e);
     }
     return INITIAL_DEMO_USERS[0];
   },
   setCurrentUser: (user: UserProfile) => {
-    safeSetItem('ecobot_current_user', JSON.stringify(user));
+    if (user) {
+      safeSetItem('ecobot_current_user', JSON.stringify(user));
+    }
   }
 };
