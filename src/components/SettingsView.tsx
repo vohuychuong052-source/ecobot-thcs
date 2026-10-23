@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
-import { UserProfile } from '../types';
 import { INITIAL_DEMO_USERS, DEFAULT_SCHOOL } from '../utils/storage';
+
+interface UserProfile {
+  id: string;
+  name: string;
+  role: 'teacher' | 'student';
+  school?: string;
+  grade?: string;
+  subject?: string;
+  department?: string;
+  email?: string;
+  phone?: string;
+  createdAt?: string;
+}
 
 interface SettingsViewProps {
   currentUser: UserProfile;
@@ -19,8 +31,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   academicYear,
   onSaveAcademicYear,
 }) => {
-  const [tempApiKey, setTempApiKey] = useState(apiKey);
-  const [tempYear, setTempYear] = useState(academicYear);
+  const [tempApiKey, setTempApiKey] = useState(apiKey || '');
+  const [tempYear, setTempYear] = useState(academicYear || '2026-2027');
   const [showKey, setShowKey] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
@@ -36,7 +48,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Cài đặt & Quản lý Tài khoản</h2>
-          <p className="text-slate-500 text-sm">Cấu hình năm học, Khóa API cá nhân và Chuyển đổi danh sách Tài khoản chính thức</p>
+          <p className="text-slate-500 text-sm">Cấu hình năm học, Khóa API cá nhân và Chuyển đổi tài khoản</p>
         </div>
       </div>
 
@@ -99,7 +111,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
 
-        {/* Danh sách Tài khoản & Nhãn phân loại chuẩn */}
+        {/* Danh sách Tài khoản & Nhãn phân loại */}
         <div className="lg:col-span-1">
           <div className="bg-gradient-to-br from-[#0A192F] to-slate-900 rounded-2xl p-5 text-white shadow-xl border border-emerald-500/30">
             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
@@ -109,10 +121,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               Chọn tài khoản làm việc trực tiếp:
             </p>
 
-            <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1 custom-scrollbar">
-              {INITIAL_DEMO_USERS.map((userItem) => {
+            <div className="space-y-2.5 max-h-[500px] overflow-y-auto pr-1">
+              {INITIAL_DEMO_USERS.map((userItem: any) => {
                 const isActive = currentUser.id === userItem.id;
-                // LOGIC PHÂN LOẠI NHÃN CHUẨN XÁC:
+                // LOGIC PHÂN LOẠI NHÃN:
                 const isDemoAccount = userItem.id === 'gv_demo' || userItem.id === 'hs_demo';
                 const badgeText = isDemoAccount
                   ? (userItem.role === 'teacher' ? 'Demo Giáo viên' : 'Demo Học sinh')
