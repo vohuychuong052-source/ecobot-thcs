@@ -287,6 +287,18 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     addedBy: 'Trương Văn Nghĩa',
     addedAt: '2026-09-04',
   },
+  {
+    id: 'vid_8',
+    title: 'Điều gì xảy ra khi ta sống trong bầu không khí ô nhiễm ?',
+    description: 'ô nhiễm không khí.',
+    url: 'https://www.youtube.com/watch?v=-Zo4hHk-dH4',
+    embedUrl: 'https://www.youtube.com/embed/-Zo4hHk-dH4',
+    grade: 'Lớp 7',
+    subject: 'Giáo dục công dân',
+    tag: 'Tiết kiệm năng lượng',
+    addedBy: 'Trương Văn Nghĩa',
+    addedAt: '2026-09-04',
+  },
 ];
 
 export const INITIAL_LOGS: GreenActionLog[] = [
