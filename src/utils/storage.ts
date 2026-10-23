@@ -13,9 +13,11 @@ function safeSetItem(key: string, value: string): boolean {
   }
 }
 
-// Danh sách tài khoản hệ thống (Cố định vĩnh viễn)
+// -------------------------------------------------------------
+// 1. DANH SÁCH TÀI KHOẢN HỆ THỐNG (CỐ ĐỊNH VĨNH VIỄN)
+// -------------------------------------------------------------
 export const INITIAL_DEMO_USERS: UserProfile[] = [
-  // 1. Tài khoản Demo gốc
+  // Tài khoản Demo gốc
   {
     id: 'gv_demo',
     name: DEFAULT_TEACHER,
@@ -39,7 +41,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
 
-  // 2. Giáo viên chính thức
+  // Giáo viên chính thức
   {
     id: 'gv_01',
     name: 'Nguyễn Thị Hồng Điệp',
@@ -107,7 +109,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
 
-  // 3. Học sinh chính thức
+  // Học sinh chính thức
   {
     id: 'hs_01',
     name: 'Nguyễn Văn An',
@@ -119,7 +121,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
   {
-    id: 'hs_02',
+    id: 'hs_05',
     name: 'Sĩ Hồng Hoa',
     role: 'student',
     school: DEFAULT_SCHOOL,
@@ -129,7 +131,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     createdAt: '2026-09-01T08:00:00Z',
   },
   {
-    id: 'hs_3',
+    id: 'hs_06',
     name: 'La Văn Hậu',
     role: 'student',
     school: DEFAULT_SCHOOL,
@@ -140,6 +142,9 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
   }
 ];
 
+// -------------------------------------------------------------
+// 2. DỮ LIỆU BAN ĐẦU
+// -------------------------------------------------------------
 export const INITIAL_VIDEOS: VideoItem[] = [
   {
     id: 'vid_1',
@@ -154,7 +159,7 @@ export const INITIAL_VIDEOS: VideoItem[] = [
     addedAt: '2026-09-01',
   },
   {
-    id: 'vid_2',
+    id: 'vid_3',
     title: 'Hành động nhỏ vì Hành tinh Xanh - Tiết kiệm điện năng học đường',
     description: 'Chiến dịch tắt thiết bị điện khi ra khỏi lớp học và sử dụng ánh sáng tự nhiên.',
     url: 'https://www.youtube.com/watch?v=V01Q3xjS1Ek',
@@ -179,3 +184,51 @@ export const INITIAL_LOGS: GreenActionLog[] = [
     timestamp: '2026-09-05T11:30:00Z',
   }
 ];
+
+// -------------------------------------------------------------
+// 3. ĐỐI TƯỢNG STORAGE BỊ THIẾU KHIẾN VERCEL BÁO LỖI BUILD[cite: 16]
+// -------------------------------------------------------------
+export const storage = {
+  getUsers: (): UserProfile[] => {
+    const saved = localStorage.getItem('ecobot_users');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return INITIAL_DEMO_USERS;
+  },
+  saveUsers: (users: UserProfile[]) => {
+    safeSetItem('ecobot_users', JSON.stringify(users));
+  },
+  getLogs: (): GreenActionLog[] => {
+    const saved = localStorage.getItem('ecobot_logs');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return INITIAL_LOGS;
+  },
+  saveLogs: (logs: GreenActionLog[]) => {
+    safeSetItem('ecobot_logs', JSON.stringify(logs));
+  },
+  getVideos: (): VideoItem[] => {
+    const saved = localStorage.getItem('ecobot_videos');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return INITIAL_VIDEOS;
+  },
+  saveVideos: (videos: VideoItem[]) => {
+    safeSetItem('ecobot_videos', JSON.stringify(videos));
+  }
+};
