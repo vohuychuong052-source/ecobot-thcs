@@ -518,23 +518,52 @@ export const storage = {
   },
 
   // VIDEOS
-  getVideos(): VideoItem[] {
-    try {
-      const data = localStorage.getItem(STORAGE_KEYS.VIDEOS);
-      if (!data) {
-        safeSetItem(STORAGE_KEYS.VIDEOS, JSON.stringify(INITIAL_VIDEOS));
-        return INITIAL_VIDEOS;
-      }
-      const parsed = JSON.parse(data);
-      if (!Array.isArray(parsed) || parsed.length === 0) {
-        safeSetItem(STORAGE_KEYS.VIDEOS, JSON.stringify(INITIAL_VIDEOS));
-        return INITIAL_VIDEOS;
-      }
-      return parsed;
-    } catch {
+  
+getVideos(): VideoItem[] {
+  try {
+    const data = localStorage.getItem(STORAGE_KEYS.VIDEOS);
+
+    if (!data) {
+      safeSetItem(
+        STORAGE_KEYS.VIDEOS,
+        JSON.stringify(INITIAL_VIDEOS)
+      );
       return INITIAL_VIDEOS;
     }
-  },
+
+    const parsed: VideoItem[] = JSON.parse(data);
+
+    if (!Array.isArray(parsed)) {
+      safeSetItem(
+        STORAGE_KEYS.VIDEOS,
+        JSON.stringify(INITIAL_VIDEOS)
+      );
+      return INITIAL_VIDEOS;
+    }
+
+    const existingIds = new Set(
+      parsed.map(video => video.id)
+    );
+
+    const missingDefaults = INITIAL_VIDEOS.filter(
+      video => !existingIds.has(video.id)
+    );
+
+    const merged = [...missingDefaults, ...parsed];
+
+    if (missingDefaults.length > 0) {
+      safeSetItem(
+        STORAGE_KEYS.VIDEOS,
+        JSON.stringify(merged)
+      );
+    }
+
+    return merged;
+  } catch {
+    return INITIAL_VIDEOS;
+  }
+},
+
 
   saveVideos(videos: VideoItem[]) {
     safeSetItem(STORAGE_KEYS.VIDEOS, JSON.stringify(videos));
