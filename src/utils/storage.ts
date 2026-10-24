@@ -178,28 +178,7 @@ export const INITIAL_LOGS: GreenActionLog[] = [
 ];
 
 // -------------------------------------------------------------
-// 2. HÀM KHỞI TẠO AN TOÀN TRÊN LOCALSTORAGE (ĐẢM BẢO KHÔNG MẤT DỮ LIỆU ĐĂNG KÝ)
-// -------------------------------------------------------------
-function ensureInitialized() {
-  try {
-    if (!localStorage.getItem('ecobot_users')) {
-      localStorage.setItem('ecobot_users', JSON.stringify(INITIAL_DEMO_USERS));
-    }
-    if (!localStorage.getItem('ecobot_videos')) {
-      localStorage.setItem('ecobot_videos', JSON.stringify(INITIAL_VIDEOS));
-    }
-    if (!localStorage.getItem('ecobot_logs')) {
-      localStorage.setItem('ecobot_logs', JSON.stringify(INITIAL_LOGS));
-    }
-  } catch (e) {
-    console.error('Initialization error:', e);
-  }
-}
-
-ensureInitialized();
-
-// -------------------------------------------------------------
-// 3. ĐỐI TƯỢNG STORAGE QUẢN LÝ DỮ LIỆU BỀN VỮNG
+// 2. ĐỐI TƯỢNG STORAGE QUẢN LÝ DỮ LIỆU BỀN VỮNG (AN TOÀN TUYỆT ĐỐI)
 // -------------------------------------------------------------
 export const storage = {
   getUsers: (): UserProfile[] => {
@@ -208,24 +187,14 @@ export const storage = {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          // Kiểm tra và gộp bù các tài khoản demo mới nếu chưa có trong localStorage cũ
-          const existingIds = new Set(parsed.map((u: UserProfile) => u.id));
-          let hasNew = false;
-          INITIAL_DEMO_USERS.forEach((demo) => {
-            if (!existingIds.has(demo.id)) {
-              parsed.push(demo);
-              hasNew = true;
-            }
-          });
-          if (hasNew) {
-            safeSetItem('ecobot_users', JSON.stringify(parsed));
-          }
           return parsed;
         }
       }
     } catch (e) { 
       console.error(e); 
     }
+    // Nếu chưa có, tự động ghi dữ liệu mẫu vào localStorage
+    safeSetItem('ecobot_users', JSON.stringify(INITIAL_DEMO_USERS));
     return INITIAL_DEMO_USERS;
   },
   
@@ -241,6 +210,7 @@ export const storage = {
         if (Array.isArray(parsed)) return parsed;
       }
     } catch (e) { console.error(e); }
+    safeSetItem('ecobot_logs', JSON.stringify(INITIAL_LOGS));
     return INITIAL_LOGS;
   },
   
@@ -253,9 +223,10 @@ export const storage = {
       const saved = localStorage.getItem('ecobot_videos');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
       }
     } catch (e) { console.error(e); }
+    safeSetItem('ecobot_videos', JSON.stringify(INITIAL_VIDEOS));
     return INITIAL_VIDEOS;
   },
   
@@ -287,7 +258,6 @@ export const storage = {
       }
     } catch (e) { console.error(e); }
     
-    // Nếu chưa có user hiện tại, lấy user đầu tiên làm mặc định
     const users = storage.getUsers();
     return users[0] || INITIAL_DEMO_USERS[0];
   },
