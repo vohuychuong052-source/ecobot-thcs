@@ -14,7 +14,7 @@ function safeSetItem(key: string, value: string): boolean {
 }
 
 // -------------------------------------------------------------
-// 1. DANH SÁCH TÀI KHOẢN HỆ THỐNG CỐ ĐỊNH
+// 1. DANH SÁCH TÀI KHOẢN HỆ THỐNG CỐ ĐỊNH BAN ĐẦU
 // -------------------------------------------------------------
 export const INITIAL_DEMO_USERS: UserProfile[] = [
   {
@@ -178,7 +178,28 @@ export const INITIAL_LOGS: GreenActionLog[] = [
 ];
 
 // -------------------------------------------------------------
-// 2. ĐỐI TƯỢNG STORAGE ĐẦY ĐỦ MỌI HÀM VÀ HỖ TRỢ CẢ 2 KIỂU IMPORT
+// 2. HÀM KHỞI TẠO AN TOÀN TRÊN LOCALSTORAGE (ĐẢM BẢO KHÔNG MẤT DỮ LIỆU ĐĂNG KÝ)
+// -------------------------------------------------------------
+function ensureInitialized() {
+  try {
+    if (!localStorage.getItem('ecobot_users')) {
+      localStorage.setItem('ecobot_users', JSON.stringify(INITIAL_DEMO_USERS));
+    }
+    if (!localStorage.getItem('ecobot_videos')) {
+      localStorage.setItem('ecobot_videos', JSON.stringify(INITIAL_VIDEOS));
+    }
+    if (!localStorage.getItem('ecobot_logs')) {
+      localStorage.setItem('ecobot_logs', JSON.stringify(INITIAL_LOGS));
+    }
+  } catch (e) {
+    console.error('Initialization error:', e);
+  }
+}
+
+ensureInitialized();
+
+// -------------------------------------------------------------
+// 3. ĐỐI TƯỢNG STORAGE QUẢN LÝ DỮ LIỆU BỀN VỮNG
 // -------------------------------------------------------------
 export const storage = {
   getUsers: (): UserProfile[] => {
@@ -186,14 +207,32 @@ export const storage = {
       const saved = localStorage.getItem('ecobot_users');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Kiểm tra và gộp bù các tài khoản demo mới nếu chưa có trong localStorage cũ
+          const existingIds = new Set(parsed.map((u: UserProfile) => u.id));
+          let hasNew = false;
+          INITIAL_DEMO_USERS.forEach((demo) => {
+            if (!existingIds.has(demo.id)) {
+              parsed.push(demo);
+              hasNew = true;
+            }
+          });
+          if (hasNew) {
+            safeSetItem('ecobot_users', JSON.stringify(parsed));
+          }
+          return parsed;
+        }
       }
-    } catch (e) { console.error(e); }
+    } catch (e) { 
+      console.error(e); 
+    }
     return INITIAL_DEMO_USERS;
   },
+  
   saveUsers: (users: UserProfile[]) => {
     safeSetItem('ecobot_users', JSON.stringify(users));
   },
+  
   getLogs: (): GreenActionLog[] => {
     try {
       const saved = localStorage.getItem('ecobot_logs');
@@ -204,22 +243,26 @@ export const storage = {
     } catch (e) { console.error(e); }
     return INITIAL_LOGS;
   },
+  
   saveLogs: (logs: GreenActionLog[]) => {
     safeSetItem('ecobot_logs', JSON.stringify(logs));
   },
+  
   getVideos: (): VideoItem[] => {
     try {
       const saved = localStorage.getItem('ecobot_videos');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed)) return parsed;
       }
     } catch (e) { console.error(e); }
     return INITIAL_VIDEOS;
   },
+  
   saveVideos: (videos: VideoItem[]) => {
     safeSetItem('ecobot_videos', JSON.stringify(videos));
   },
+  
   getFiles: (): any[] => {
     try {
       const saved = localStorage.getItem('ecobot_files');
@@ -230,9 +273,11 @@ export const storage = {
     } catch (e) { console.error(e); }
     return [];
   },
+  
   saveFiles: (files: any[]) => {
     safeSetItem('ecobot_files', JSON.stringify(files));
   },
+  
   getCurrentUser: (): UserProfile => {
     try {
       const saved = localStorage.getItem('ecobot_current_user');
@@ -241,8 +286,12 @@ export const storage = {
         if (parsed && parsed.id) return parsed;
       }
     } catch (e) { console.error(e); }
-    return INITIAL_DEMO_USERS[0];
+    
+    // Nếu chưa có user hiện tại, lấy user đầu tiên làm mặc định
+    const users = storage.getUsers();
+    return users[0] || INITIAL_DEMO_USERS[0];
   },
+  
   setCurrentUser: (user: UserProfile) => {
     if (user) {
       safeSetItem('ecobot_current_user', JSON.stringify(user));
@@ -250,5 +299,4 @@ export const storage = {
   }
 };
 
-// Hỗ trợ thêm default export để tránh lỗi import khác kiểu
 export default storage;
