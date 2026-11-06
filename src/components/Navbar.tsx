@@ -68,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             Năm học: {academicYear}
           </span>
           <span className="inline-flex items-center gap-1 text-amber-300 font-semibold">
-            <Award className="w-3.5 h-3.5" /> 2026 AI in Education & VISEF Award
+            <Award className="w-3.5 h-3.5" /> Cuộc thi Khoa học Kỹ thuật năm học 2026 - 2027 Award
           </span>
         </div>
       </div>
