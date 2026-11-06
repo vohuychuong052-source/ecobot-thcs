@@ -83,7 +83,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               Chào mừng, <span className="bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">{currentUser.name}</span>!
             </h1>
             <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              Dự án chuyển đổi số phục vụ <strong>Ngày hội Nhà giáo Sáng tạo 2026</strong>. Đồng hành cùng <strong>{currentUser.school || DEFAULT_SCHOOL}</strong> trong mô phỏng dấu chân carbon và trợ lý AI soạn kế hoạch bài dạy chuẩn Công văn 5512.
+              Dự án chuyển đổi số phục vụ <strong>Cuộc thi Khoa học kĩ thuật 2026</strong>. Đồng hành cùng <strong>{currentUser.school || DEFAULT_SCHOOL}</strong> trong mô phỏng dấu chân carbon và trợ lý AI soạn kế hoạch bài dạy chuẩn Công văn 5512.
             </p>
             <div className="pt-2 flex flex-wrap items-center gap-2 text-xs text-slate-300">
               <span className="bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700">
