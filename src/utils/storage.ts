@@ -22,7 +22,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
     name: DEFAULT_TEACHER,
     role: 'teacher',
     school: DEFAULT_SCHOOL,
-    grade: 'Khối 8',
+    grade: 'Khối 9',
     subject: 'Giáo dục Công dân',
     department: '',
     email: 'truongvannghia@thcsnguyendang.edu.vn',
@@ -31,12 +31,12 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
   },
   {
     id: 'hs_demo',
-    name: 'Học sinh Lớp 8',
+    name: 'Trần Đăng Khôi',
     role: 'student',
     school: DEFAULT_SCHOOL,
-    grade: 'Lớp 8',
+    grade: 'Lớp 9',
     department: '',
-    email: 'hocsinh.lop8@thcsnguyendang.edu.vn',
+    email: 'hocsinh.lop9@thcsnguyendang.edu.vn',
     createdAt: '2026-09-01T08:00:00Z',
   },
   {
@@ -63,7 +63,7 @@ export const INITIAL_DEMO_USERS: UserProfile[] = [
   },
   {
     id: 'gv_03',
-    name: 'Thạch Thị Phương',
+    name: 'Thạch Thị Phươne',
     role: 'teacher',
     school: DEFAULT_SCHOOL,
     grade: 'Khối 7',
