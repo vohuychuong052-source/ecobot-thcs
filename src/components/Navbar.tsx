@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             🌱 Sản phẩm dự thi
           </span>
           <span className="font-medium text-slate-200">
-            Ngày hội Nhà giáo Sáng tạo 2026 | {currentUser.school}
+            Cuộc thi Khoa học kĩ thuật 2026 | {currentUser.school}
           </span>
         </div>
         <div className="flex items-center gap-3 text-slate-300 text-[11px]">
